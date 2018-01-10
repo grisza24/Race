@@ -1,0 +1,38 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+Wyniki->Clear();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar1Change(TObject *Sender)
+{
+        for(int i=2;i<=TrackBar1->Position;i++)
+        {
+                TEdit* pom=dynamic_cast<TEdit*>(FindComponent("Edit"+IntToStr(i)));
+                pom->Visible=true;
+        }
+        for(int i=TrackBar1->Position+1;i<=TrackBar1->Max;i++)
+        {
+                TEdit* pom=dynamic_cast<TEdit*>(FindComponent("Edit"+IntToStr(i)));
+                pom->Visible=false;
+        }
+}
+//---------------------------------------------------------------------------
+ 
